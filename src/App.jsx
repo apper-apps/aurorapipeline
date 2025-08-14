@@ -17,11 +17,6 @@ import Analytics from "@/components/pages/Analytics";
 import Dashboard from "@/components/pages/Dashboard";
 import Accounts from "@/components/pages/Accounts";
 import Pipeline from "@/components/pages/Pipeline";
-import contactsData from "@/services/mockData/contacts.json";
-import dealsData from "@/services/mockData/deals.json";
-import leadsData from "@/services/mockData/leads.json";
-import stagesData from "@/services/mockData/stages.json";
-import accountsData from "@/services/mockData/accounts.json";
 // Create auth context
 export const AuthContext = createContext(null);
 
