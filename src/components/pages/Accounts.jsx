@@ -38,8 +38,8 @@ const Accounts = () => {
     }
   };
 
-  const handleDelete = async (account) => {
-    if (!window.confirm(`Are you sure you want to delete ${account.name}?`)) return;
+const handleDelete = async (account) => {
+    if (!window.confirm(`Are you sure you want to delete ${account.Name}?`)) return;
 
     try {
       await AccountsService.delete(account.Id);
@@ -50,12 +50,12 @@ const Accounts = () => {
     }
   };
 
-  const handleEdit = (account) => {
-    toast.info(`Editing ${account.name}...`);
+const handleEdit = (account) => {
+    toast.info(`Editing ${account.Name}...`);
   };
 
-  const handleCreateOpportunity = (account) => {
-    toast.info(`Creating opportunity for ${account.name}...`);
+const handleCreateOpportunity = (account) => {
+    toast.info(`Creating opportunity for ${account.Name}...`);
   };
 
   const getHealthBadge = (health) => {
@@ -78,13 +78,12 @@ const Accounts = () => {
     return icons[health] || 'Minus';
   };
 
-  const filteredAccounts = accounts.filter(account => {
-    const matchesSearch = account.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         account.industry.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         account.website.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesType = typeFilter === 'all' || account.type === typeFilter;
-    const matchesHealth = healthFilter === 'all' || account.health === healthFilter;
-    
+const filteredAccounts = accounts.filter(account => {
+    const matchesSearch = account.Name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         account.industry_c?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         account.website_c?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesType = typeFilter === 'all' || account.type_c === typeFilter;
+    const matchesHealth = healthFilter === 'all' || account.health_c === healthFilter;
     return matchesSearch && matchesType && matchesHealth;
   });
 
@@ -225,7 +224,7 @@ const Accounts = () => {
         >
           <Card className="p-6 text-center bg-green-50 border border-green-200 shadow-lg hover:shadow-xl transition-shadow">
             <div className="text-4xl font-bold text-green-700 mb-2">
-              {accounts.filter(a => a.health === 'excellent').length}
+{accounts.filter(a => a.health_c === 'excellent').length}
             </div>
             <div className="text-green-600 font-medium text-lg">Excellent Health</div>
           </Card>
@@ -236,7 +235,7 @@ const Accounts = () => {
         >
           <Card className="p-6 text-center bg-orange-50 border border-orange-200 shadow-lg hover:shadow-xl transition-shadow">
             <div className="text-4xl font-bold text-orange-700 mb-2">
-              {accounts.filter(a => a.health === 'good').length}
+{accounts.filter(a => a.health_c === 'good').length}
             </div>
             <div className="text-orange-600 font-medium text-lg">Good Health</div>
           </Card>
@@ -247,7 +246,7 @@ const Accounts = () => {
         >
           <Card className="p-6 text-center bg-red-50 border border-red-200 shadow-lg hover:shadow-xl transition-shadow">
             <div className="text-4xl font-bold text-red-700 mb-2">
-              {accounts.filter(a => a.health === 'poor' || a.health === 'critical').length}
+{accounts.filter(a => a.health_c === 'poor' || a.health_c === 'critical').length}
             </div>
             <div className="text-red-600 font-medium text-lg">At Risk</div>
           </Card>
@@ -258,7 +257,7 @@ const Accounts = () => {
         >
           <Card className="p-6 text-center bg-slate-50 border border-slate-200 shadow-lg hover:shadow-xl transition-shadow">
             <div className="text-2xl font-bold text-slate-800 mb-2">
-              {formatCurrency(accounts.reduce((sum, account) => sum + account.totalRevenue, 0))}
+{formatCurrency(accounts.reduce((sum, account) => sum + account.total_revenue_c, 0))}
             </div>
             <div className="text-slate-600 font-medium text-lg">Total Revenue</div>
           </Card>
@@ -302,38 +301,38 @@ const Accounts = () => {
                         <motion.div
                           whileHover={{ scale: 1.02 }}
                         >
-                          <div className="font-semibold text-gray-900 text-base">{account.name}</div>
-                          <div className="text-sm font-medium text-slate-600">{account.website}</div>
-                          <div className="text-sm font-medium text-slate-600">{account.location}</div>
+<div className="font-semibold text-gray-900 text-base">{account.Name}</div>
+                          <div className="text-sm font-medium text-slate-600">{account.website_c}</div>
+                          <div className="text-sm font-medium text-slate-600">{account.location_c}</div>
                         </motion.div>
                       </td>
                       <td className="py-4 px-6">
                         <Badge variant="primary" size="sm">
-                          {account.type}
+{account.type_c}
                         </Badge>
                       </td>
-                      <td className="py-4 px-6 font-medium text-gray-800">{account.industry}</td>
+<td className="py-4 px-6 font-medium text-gray-800">{account.industry_c}</td>
                       <td className="py-4 px-6">
                         <div className="flex items-center gap-2">
-                          <ApperIcon 
-                            name={getHealthIcon(account.health)} 
+<ApperIcon 
+                            name={getHealthIcon(account.health_c)} 
                             className={`w-5 h-5 ${
-                              account.health === 'excellent' ? 'text-green-600' :
-                              account.health === 'good' ? 'text-orange-600' :
+                              account.health_c === 'excellent' ? 'text-green-600' :
+                              account.health_c === 'good' ? 'text-orange-600' :
                               'text-red-600'
                             }`} 
                           />
-                          <Badge variant={getHealthBadge(account.health)} size="sm">
-                            {account.health}
+                          <Badge variant={getHealthBadge(account.health_c)} size="sm">
+                            {account.health_c}
                           </Badge>
                         </div>
                       </td>
-                      <td className="py-4 px-6 font-medium text-gray-700">{account.contactCount}</td>
+<td className="py-4 px-6 font-medium text-gray-700">{account.contact_count_c}</td>
                       <td className="py-4 px-6 font-semibold text-lg text-green-600">
                         {formatCurrency(account.totalRevenue)}
                       </td>
-                      <td className="py-4 px-6 text-gray-700 text-sm font-medium">
-                        {formatDate(account.lastActivity)}
+<td className="py-4 px-6 text-gray-700 text-sm font-medium">
+                        {formatCurrency(account.total_revenue_c)}
                       </td>
                       <td className="py-4 px-6">
                         <div className="flex items-center gap-2">

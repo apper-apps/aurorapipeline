@@ -38,19 +38,19 @@ const Leads = () => {
     }
   };
 
-  const handleConvertToContact = async (lead) => {
+const handleConvertToContact = async (lead) => {
     try {
       await LeadsService.convertToContact(lead.Id);
       setLeads(prev => prev.filter(l => l.Id !== lead.Id));
-      toast.success(`${lead.name} converted to contact successfully`);
+      toast.success(`${lead.Name} converted to contact successfully`);
     } catch (err) {
       toast.error("Failed to convert lead");
     }
   };
 
-  const handleUpdateStatus = async (lead, newStatus) => {
+const handleUpdateStatus = async (lead, newStatus) => {
     try {
-      const updatedLead = await LeadsService.update(lead.Id, { status: newStatus });
+      const updatedLead = await LeadsService.update(lead.Id, { status_c: newStatus });
       setLeads(prev => prev.map(l => l.Id === lead.Id ? updatedLead : l));
       toast.success("Lead status updated");
     } catch (err) {
@@ -58,8 +58,8 @@ const Leads = () => {
     }
   };
 
-  const handleDelete = async (lead) => {
-    if (!window.confirm(`Are you sure you want to delete ${lead.name}?`)) return;
+const handleDelete = async (lead) => {
+    if (!window.confirm(`Are you sure you want to delete ${lead.Name}?`)) return;
 
     try {
       await LeadsService.delete(lead.Id);
@@ -86,13 +86,12 @@ const Leads = () => {
     return 'error';
   };
 
-  const filteredLeads = leads.filter(lead => {
-    const matchesSearch = lead.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         lead.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         lead.company.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || lead.status === statusFilter;
-    const matchesSource = sourceFilter === 'all' || lead.source === sourceFilter;
-    
+const filteredLeads = leads.filter(lead => {
+    const matchesSearch = lead.Name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         lead.email_c?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         lead.company_c?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === 'all' || lead.status_c === statusFilter;
+    const matchesSource = sourceFilter === 'all' || lead.source_c === sourceFilter;
     return matchesSearch && matchesStatus && matchesSource;
   });
 
@@ -234,7 +233,7 @@ const Leads = () => {
         >
           <Card className="p-6 text-center bg-slate-50 border border-slate-200 shadow-lg hover:shadow-xl transition-shadow">
             <div className="text-4xl font-bold text-slate-800 mb-2">
-              {leads.filter(l => l.status === 'new').length}
+{leads.filter(l => l.status_c === 'new').length}
             </div>
             <div className="text-slate-600 font-medium text-lg">New Leads</div>
           </Card>
@@ -245,7 +244,7 @@ const Leads = () => {
         >
           <Card className="p-6 text-center bg-orange-50 border border-orange-200 shadow-lg hover:shadow-xl transition-shadow">
             <div className="text-4xl font-bold text-orange-700 mb-2">
-              {leads.filter(l => l.status === 'contacted').length}
+{leads.filter(l => l.status_c === 'contacted').length}
             </div>
             <div className="text-orange-600 font-medium text-lg">Contacted</div>
           </Card>
@@ -256,7 +255,7 @@ const Leads = () => {
         >
           <Card className="p-6 text-center bg-green-50 border border-green-200 shadow-lg hover:shadow-xl transition-shadow">
             <div className="text-4xl font-bold text-green-700 mb-2">
-              {leads.filter(l => l.status === 'qualified').length}
+{leads.filter(l => l.status_c === 'qualified').length}
             </div>
             <div className="text-green-600 font-medium text-lg">Qualified</div>
           </Card>
@@ -267,7 +266,7 @@ const Leads = () => {
         >
           <Card className="p-6 text-center bg-blue-50 border border-blue-200 shadow-lg hover:shadow-xl transition-shadow">
             <div className="text-4xl font-bold text-blue-700 mb-2">
-              {Math.round(leads.filter(l => l.status === 'qualified').length / Math.max(leads.length, 1) * 100)}%
+{Math.round(leads.filter(l => l.status_c === 'qualified').length / Math.max(leads.length, 1) * 100)}%
             </div>
             <div className="text-blue-600 font-medium text-lg">Conversion Rate</div>
           </Card>
@@ -311,26 +310,26 @@ const Leads = () => {
                         <motion.div
                           whileHover={{ scale: 1.02 }}
                         >
-                          <div className="font-semibold text-gray-900 text-base">{lead.name}</div>
-                          <div className="text-sm font-medium text-slate-600">{lead.email}</div>
-                          <div className="text-sm font-medium text-slate-600">{lead.phone}</div>
+<div className="font-semibold text-gray-900 text-base">{lead.Name}</div>
+                          <div className="text-sm font-medium text-slate-600">{lead.email_c}</div>
+                          <div className="text-sm font-medium text-slate-600">{lead.phone_c}</div>
                         </motion.div>
                       </td>
-                      <td className="py-4 px-6 font-medium text-gray-800">{lead.company}</td>
+<td className="py-4 px-6 font-medium text-gray-800">{lead.company_c}</td>
                       <td className="py-4 px-6">
                         <Badge variant="primary" size="sm">
-                          {lead.source}
+{lead.source_c}
                         </Badge>
                       </td>
                       <td className="py-4 px-6">
-                        <Badge variant={getStatusBadge(lead.status)} size="sm">
+<Badge variant={getStatusBadge(lead.status_c)} size="sm">
                           {lead.status}
                         </Badge>
                       </td>
                       <td className="py-4 px-6">
                         <Badge variant={getScoreBadge(lead.score)} size="sm">
-                          {lead.score}/100
-                        </Badge>
+{lead.score_c}/100
+333]                        </Badge>
                       </td>
                       <td className="py-4 px-6 font-semibold text-lg text-green-600">
                         {formatCurrency(lead.estimatedValue)}
@@ -340,7 +339,7 @@ const Leads = () => {
                       </td>
                       <td className="py-4 px-6">
                         <div className="flex items-center gap-2">
-                          {lead.status === 'qualified' && (
+{lead.status_c === 'qualified' && (
                             <motion.div
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.95 }}

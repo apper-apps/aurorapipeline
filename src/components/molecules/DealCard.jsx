@@ -31,8 +31,8 @@ const DealCard = ({
     }
   };
 
-  const getDaysInStage = () => {
-    const daysDiff = Math.floor((new Date() - new Date(deal.updatedAt)) / (1000 * 60 * 60 * 24));
+const getDaysInStage = () => {
+    const daysDiff = Math.floor((new Date() - new Date(deal.updated_at_c)) / (1000 * 60 * 60 * 24));
     return daysDiff;
   };
 
@@ -56,14 +56,14 @@ const DealCard = ({
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">
             <h4 className="font-medium text-gray-900 mb-1 line-clamp-2">
-              {deal.title}
+{deal.title_c}
             </h4>
             <p className="text-sm text-gray-600">
-              {deal.contactName} • {deal.company}
+{deal.contact_name_c} • {deal.company_c}
             </p>
           </div>
-          <Badge variant={getPriorityColor(deal.priority)} size="sm">
-            {deal.priority}
+<Badge variant={getPriorityColor(deal.priority_c)} size="sm">
+            {deal.priority_c}
           </Badge>
         </div>
 
@@ -71,20 +71,20 @@ const DealCard = ({
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-gray-700">Value</span>
             <span className="font-semibold text-primary-600">
-              {formatCurrency(deal.value)}
+{formatCurrency(deal.value_c)}
             </span>
           </div>
           
           <div className="flex items-center justify-between text-xs text-gray-500">
 <span>{getDaysInStage()} days in stage</span>
-            <span>{formatRelativeTime(deal.lastActivity)} ago</span>
+<span>{formatRelativeTime(deal.last_activity_c)} ago</span>
           </div>
         </div>
 
-        {deal.lastActivityType && (
+{deal.last_activity_type_c && (
           <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
             <ApperIcon name="Clock" className="w-3 h-3" />
-            Last: {deal.lastActivityType}
+            Last: {deal.last_activity_type_c}
           </div>
         )}
 

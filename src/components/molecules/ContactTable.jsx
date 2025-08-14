@@ -36,19 +36,19 @@ const ContactTable = ({ contacts, onEdit, onDelete, onCreateDeal }) => {
                   className="font-semibold text-gray-900 text-base"
                   whileHover={{ scale: 1.02 }}
                 >
-                  {contact.name}
+{contact.Name}
                 </motion.div>
               </td>
-              <td className="py-4 px-4 font-medium text-gray-800">{contact.company}</td>
-              <td className="py-4 px-4 font-medium text-slate-600">{contact.email}</td>
-              <td className="py-4 px-4 font-medium text-slate-600">{contact.phone}</td>
+<td className="py-4 px-4 font-medium text-gray-800">{contact.company_c}</td>
+              <td className="py-4 px-4 font-medium text-slate-600">{contact.email_c}</td>
+              <td className="py-4 px-4 font-medium text-slate-600">{contact.phone_c}</td>
               <td className="py-4 px-4">
                 <Badge variant="primary" size="sm">
-                  {contact.leadSource}
+{contact.lead_source_c}
                 </Badge>
               </td>
               <td className="py-4 px-4 text-gray-700 text-sm font-medium">
-                {formatDate(contact.createdAt)}
+{formatDate(contact.created_at_c)}
               </td>
               <td className="py-4 px-4">
                 <div className="flex items-center gap-2">

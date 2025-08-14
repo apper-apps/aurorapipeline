@@ -11,11 +11,7 @@ import Button from "@/components/atoms/Button";
 import Badge from "@/components/atoms/Badge";
 import Card from "@/components/atoms/Card";
 import Pipeline from "@/components/pages/Pipeline";
-import contactsData from "@/services/mockData/contacts.json";
-import dealsData from "@/services/mockData/deals.json";
-import leadsData from "@/services/mockData/leads.json";
-import stagesData from "@/services/mockData/stages.json";
-import accountsData from "@/services/mockData/accounts.json";
+// Mock data imports removed - now using database services
 import { formatCurrency, formatDate } from "@/utils/formatters";
 
 const Dashboard = () => {

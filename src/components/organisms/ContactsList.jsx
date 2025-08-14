@@ -33,8 +33,8 @@ const ContactsList = () => {
     }
   };
 
-  const handleDelete = async (contact) => {
-    if (!window.confirm(`Are you sure you want to delete ${contact.name}?`)) return;
+const handleDelete = async (contact) => {
+    if (!window.confirm(`Are you sure you want to delete ${contact.Name}?`)) return;
 
     try {
       await ContactsService.delete(contact.Id);
@@ -45,18 +45,18 @@ const ContactsList = () => {
     }
   };
 
-  const handleCreateDeal = (contact) => {
-    toast.info(`Creating deal for ${contact.name}...`);
+const handleCreateDeal = (contact) => {
+    toast.info(`Creating deal for ${contact.Name}...`);
   };
 
   const handleEdit = (contact) => {
-    toast.info(`Editing ${contact.name}...`);
+    toast.info(`Editing ${contact.Name}...`);
   };
 
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.email.toLowerCase().includes(searchTerm.toLowerCase())
+const filteredContacts = contacts.filter(contact =>
+    contact.Name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    contact.company_c?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    contact.email_c?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (loading) return <Loading variant="skeleton" />;

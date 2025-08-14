@@ -10,35 +10,35 @@ export const DashboardService = {
     const contacts = await ContactsService.getAll();
     
     // Calculate metrics
-    const totalRevenue = deals
-      .filter(deal => deal.stage === "deal-closed")
-      .reduce((sum, deal) => sum + deal.value, 0);
+const totalRevenue = deals
+      .filter(deal => deal.stage_c === "deal-closed")
+      .reduce((sum, deal) => sum + deal.value_c, 0);
     
-    const activeDeals = deals.filter(deal => deal.stage !== "deal-closed").length;
+const activeDeals = deals.filter(deal => deal.stage_c !== "deal-closed").length;
     const newLeads = Math.floor(Math.random() * 15) + 5; // Mock data
     const conversionRate = Math.floor(Math.random() * 30) + 15; // Mock data
     
     // Pipeline overview
     const pipeline = [
       {
-        name: "Cold Lead",
-        count: deals.filter(d => d.stage === "cold-lead").length,
-        value: formatCurrency(deals.filter(d => d.stage === "cold-lead").reduce((sum, d) => sum + d.value, 0))
+name: "Cold Lead",
+        count: deals.filter(d => d.stage_c === "cold-lead").length,
+        value: formatCurrency(deals.filter(d => d.stage_c === "cold-lead").reduce((sum, d) => sum + d.value_c, 0))
       },
       {
-        name: "Hot Lead", 
-        count: deals.filter(d => d.stage === "hot-lead").length,
-        value: formatCurrency(deals.filter(d => d.stage === "hot-lead").reduce((sum, d) => sum + d.value, 0))
+name: "Hot Lead", 
+        count: deals.filter(d => d.stage_c === "hot-lead").length,
+        value: formatCurrency(deals.filter(d => d.stage_c === "hot-lead").reduce((sum, d) => sum + d.value_c, 0))
       },
       {
-        name: "Estimate Sent",
-        count: deals.filter(d => d.stage === "estimate-sent").length,
-        value: formatCurrency(deals.filter(d => d.stage === "estimate-sent").reduce((sum, d) => sum + d.value, 0))
+name: "Estimate Sent",
+        count: deals.filter(d => d.stage_c === "estimate-sent").length,
+        value: formatCurrency(deals.filter(d => d.stage_c === "estimate-sent").reduce((sum, d) => sum + d.value_c, 0))
       },
       {
-        name: "Closed",
-        count: deals.filter(d => d.stage === "deal-closed").length,
-        value: formatCurrency(deals.filter(d => d.stage === "deal-closed").reduce((sum, d) => sum + d.value, 0))
+name: "Closed",
+        count: deals.filter(d => d.stage_c === "deal-closed").length,
+        value: formatCurrency(deals.filter(d => d.stage_c === "deal-closed").reduce((sum, d) => sum + d.value_c, 0))
       }
     ];
 

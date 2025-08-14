@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import ApperIcon from "@/components/ApperIcon";
 import SearchBar from "@/components/molecules/SearchBar";
 import Button from "@/components/atoms/Button";
-import ApperIcon from "@/components/ApperIcon";
+import LogoutButton from "@/components/atoms/LogoutButton";
 
 const Header = () => {
   const location = useLocation();
@@ -74,7 +75,7 @@ const navigation = [
               />
             </div>
 
-            <div className="flex items-center gap-3">
+<div className="flex items-center gap-3">
               <Button variant="ghost" icon="Bell" className="hidden md:flex" />
               <Button variant="primary" icon="Plus" className="hidden md:flex">
                 Quick Add
@@ -85,9 +86,7 @@ const navigation = [
               <span className="sr-only">Notifications</span>
             </Button>
 
-<div className="w-8 h-8 bg-slate-400 rounded-full flex items-center justify-center">
-              <ApperIcon name="User" className="w-4 h-4 text-white" />
-            </div>
+            <LogoutButton />
           </div>
         </div>
       </div>

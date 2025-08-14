@@ -6,11 +6,7 @@ import PipelineBoard from "@/components/organisms/PipelineBoard";
 import MetricCard from "@/components/molecules/MetricCard";
 import Button from "@/components/atoms/Button";
 import Card from "@/components/atoms/Card";
-import contactsData from "@/services/mockData/contacts.json";
-import dealsData from "@/services/mockData/deals.json";
-import leadsData from "@/services/mockData/leads.json";
-import stagesData from "@/services/mockData/stages.json";
-import accountsData from "@/services/mockData/accounts.json";
+// Mock data imports removed - now using database services
 import { formatCurrency } from "@/utils/formatters";
 
 const Pipeline = () => {
@@ -33,9 +29,9 @@ const Pipeline = () => {
     }
   };
 
-  const totalPipelineValue = deals.reduce((sum, deal) => sum + deal.value, 0);
+const totalPipelineValue = deals.reduce((sum, deal) => sum + deal.value_c, 0);
   const avgDealSize = deals.length > 0 ? Math.round(totalPipelineValue / deals.length) : 0;
-  const closedDeals = deals.filter(deal => deal.stage === "deal-closed").length;
+  const closedDeals = deals.filter(deal => deal.stage_c === "deal-closed").length;
   const conversionRate = deals.length > 0 ? Math.round((closedDeals / deals.length) * 100) : 0;
 
   return (

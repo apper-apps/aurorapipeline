@@ -38,13 +38,13 @@ const PipelineBoard = () => {
     }
   };
 
-  const handleDealMove = async (dealId, newStage) => {
+const handleDealMove = async (dealId, newStage) => {
     try {
       const deal = deals.find(d => d.Id === parseInt(dealId));
-      if (!deal || deal.stage === newStage) return;
+      if (!deal || deal.stage_c === newStage) return;
 
-      const updatedDeal = { ...deal, stage: newStage, updatedAt: new Date().toISOString() };
-      await DealsService.update(deal.Id, updatedDeal);
+      const updatedDeal = { ...deal, stage_c: newStage, updated_at_c: new Date().toISOString() };
+      await DealsService.update(deal.Id, { stage_c: newStage });
       
       setDeals(prevDeals => 
         prevDeals.map(d => 
@@ -78,16 +78,16 @@ const PipelineBoard = () => {
       className="h-full"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-full">
-        {stages.map((stage) => {
-          const stageDeals = getDealsForStage(stage.id);
+{stages.map((stage) => {
+          const stageDeals = getDealsForStage(stage.Name);
           return (
             <StageColumn
-              key={stage.id}
+              key={stage.Id}
               stage={stage}
               deals={stageDeals}
               onDrop={handleDealMove}
               onDragOver={handleDragOver}
-              isDropZoneActive={activeDropZone === stage.id}
+              isDropZoneActive={activeDropZone === stage.Name}
             />
           );
         })}

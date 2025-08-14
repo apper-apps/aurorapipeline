@@ -28,7 +28,7 @@ const StageColumn = ({
   };
 
   const getTotalValue = () => {
-    return deals.reduce((sum, deal) => sum + deal.value, 0);
+return deals.reduce((sum, deal) => sum + deal.value_c, 0);
   };
 
   const getStageIcon = (stageName) => {
@@ -52,11 +52,11 @@ const StageColumn = ({
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <ApperIcon 
-              name={getStageIcon(stage.name)} 
+name={getStageIcon(stage.Name)} 
               className="w-5 h-5 text-primary-600" 
             />
             <h3 className="font-display font-semibold text-gray-900">
-              {stage.name}
+              {stage.Name}
             </h3>
           </div>
           <div className="text-right">
