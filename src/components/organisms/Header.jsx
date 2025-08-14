@@ -9,9 +9,12 @@ const Header = () => {
   const location = useLocation();
   const [searchValue, setSearchValue] = useState("");
 
-  const navigation = [
-    { name: "Pipeline", href: "/pipeline", icon: "BarChart3" },
+const navigation = [
+    { name: "Dashboard", href: "/dashboard", icon: "LayoutDashboard" },
+    { name: "Leads", href: "/leads", icon: "UserPlus" },
     { name: "Contacts", href: "/contacts", icon: "Users" },
+    { name: "Accounts", href: "/accounts", icon: "Building2" },
+    { name: "Pipeline", href: "/pipeline", icon: "BarChart3" },
     { name: "Analytics", href: "/analytics", icon: "TrendingUp" },
     { name: "Settings", href: "/settings", icon: "Settings" },
   ];
@@ -24,12 +27,12 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-8">
-            <Link to="/" className="flex items-center space-x-3">
+<Link to="/" className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
-                <ApperIcon name="BarChart3" className="w-5 h-5 text-white" />
+                <ApperIcon name="Zap" className="w-5 h-5 text-white" />
               </div>
               <h1 className="text-xl font-display font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                Pipeline Pro
+                SalesCRM Pro
               </h1>
             </Link>
 
@@ -63,17 +66,20 @@ const Header = () => {
 
           {/* Right Side */}
           <div className="flex items-center space-x-4">
-            <div className="hidden md:block w-80">
+<div className="hidden md:block w-80">
               <SearchBar
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Search deals, contacts..."
+                placeholder="Search leads, contacts, deals..."
               />
             </div>
 
-            <Button variant="primary" icon="Plus" className="hidden md:flex">
-              New Deal
-            </Button>
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" icon="Bell" className="hidden md:flex" />
+              <Button variant="primary" icon="Plus" className="hidden md:flex">
+                Quick Add
+              </Button>
+            </div>
 
             <Button variant="ghost" icon="Bell">
               <span className="sr-only">Notifications</span>
