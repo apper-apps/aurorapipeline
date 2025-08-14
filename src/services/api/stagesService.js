@@ -181,14 +181,13 @@ export const StagesService = {
       }
 
       return false;
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error deleting stage:", error?.response?.data?.message);
       } else {
         console.error(error.message);
       }
       return false;
-return false;
     }
   }
 };
