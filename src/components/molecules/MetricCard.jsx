@@ -21,21 +21,21 @@ const MetricCard = ({
     return trend === "up" ? "text-green-600" : "text-red-600";
   };
 
-  const getIconBg = () => {
+const getIconBg = () => {
     const colorMap = {
-      primary: "bg-gradient-to-r from-primary-100 to-secondary-100",
-      success: "bg-gradient-to-r from-green-100 to-emerald-100",
-      warning: "bg-gradient-to-r from-yellow-100 to-orange-100",
-      error: "bg-gradient-to-r from-red-100 to-pink-100",
+      primary: "bg-slate-100",
+      success: "bg-green-100",
+      warning: "bg-orange-100",
+      error: "bg-red-100",
     };
     return colorMap[color] || colorMap.primary;
   };
 
-  const getIconColor = () => {
+const getIconColor = () => {
     const colorMap = {
-      primary: "text-primary-600",
+      primary: "text-slate-600",
       success: "text-green-600",
-      warning: "text-yellow-600",
+      warning: "text-orange-600",
       error: "text-red-600",
     };
     return colorMap[color] || colorMap.primary;

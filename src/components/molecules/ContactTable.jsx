@@ -8,64 +8,52 @@ const ContactTable = ({ contacts, onEdit, onDelete, onCreateDeal }) => {
   return (
     <div className="overflow-x-auto">
 <table className="w-full">
-        <thead className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white">
+        <thead className="bg-slate-100">
           <tr>
-            <th className="text-left py-4 px-4 font-black text-sm">👤 NAME</th>
-            <th className="text-left py-4 px-4 font-black text-sm">🏢 COMPANY</th>
-            <th className="text-left py-4 px-4 font-black text-sm">📧 EMAIL</th>
-            <th className="text-left py-4 px-4 font-black text-sm">📞 PHONE</th>
-            <th className="text-left py-4 px-4 font-black text-sm">🌟 LEAD SOURCE</th>
-            <th className="text-left py-4 px-4 font-black text-sm">📅 CREATED</th>
-            <th className="text-left py-4 px-4 font-black text-sm">⚡ ACTIONS</th>
+            <th className="text-left py-4 px-4 font-semibold text-sm text-slate-700">NAME</th>
+            <th className="text-left py-4 px-4 font-semibold text-sm text-slate-700">COMPANY</th>
+            <th className="text-left py-4 px-4 font-semibold text-sm text-slate-700">EMAIL</th>
+            <th className="text-left py-4 px-4 font-semibold text-sm text-slate-700">PHONE</th>
+            <th className="text-left py-4 px-4 font-semibold text-sm text-slate-700">LEAD SOURCE</th>
+            <th className="text-left py-4 px-4 font-semibold text-sm text-slate-700">CREATED</th>
+            <th className="text-left py-4 px-4 font-semibold text-sm text-slate-700">ACTIONS</th>
           </tr>
         </thead>
         <tbody>
           {contacts.map((contact, index) => (
             <motion.tr 
               key={contact.Id} 
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: index * 0.05, type: "spring", stiffness: 100 }}
-              whileHover={{ 
-                scale: 1.01,
-                backgroundColor: "rgba(59, 130, 246, 0.1)",
-                boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)"
-              }}
-              className={`border-b-2 border-gradient-to-r from-blue-100 to-purple-100 transition-all duration-300 cursor-pointer ${
-                index % 2 === 0 ? 'bg-white/80' : 'bg-gradient-to-r from-blue-50/50 to-purple-50/50'
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ backgroundColor: "rgba(241, 245, 249, 0.8)" }}
+              className={`border-b border-slate-200 transition-colors duration-200 cursor-pointer ${
+                index % 2 === 0 ? 'bg-white' : 'bg-slate-50'
               }`}
             >
               <td className="py-4 px-4">
                 <motion.div 
-                  className="font-black text-gray-900 text-base"
-                  whileHover={{ scale: 1.05 }}
+                  className="font-semibold text-gray-900 text-base"
+                  whileHover={{ scale: 1.02 }}
                 >
                   {contact.name}
                 </motion.div>
               </td>
-              <td className="py-4 px-4 font-bold text-gray-800">{contact.company}</td>
-              <td className="py-4 px-4 font-semibold text-blue-600">{contact.email}</td>
-              <td className="py-4 px-4 font-medium text-purple-600">{contact.phone}</td>
+              <td className="py-4 px-4 font-medium text-gray-800">{contact.company}</td>
+              <td className="py-4 px-4 font-medium text-slate-600">{contact.email}</td>
+              <td className="py-4 px-4 font-medium text-slate-600">{contact.phone}</td>
               <td className="py-4 px-4">
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: [0, 5, -5, 0] }}
-                >
-                  <Badge 
-                    variant="primary" 
-                    size="sm"
-                    className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white border-0 shadow-md font-bold"
-                  >
-                    ⭐ {contact.leadSource}
-                  </Badge>
-                </motion.div>
+                <Badge variant="primary" size="sm">
+                  {contact.leadSource}
+                </Badge>
               </td>
-              <td className="py-4 px-4 text-gray-700 text-sm font-semibold">
-                📅 {formatDate(contact.createdAt)}
+              <td className="py-4 px-4 text-gray-700 text-sm font-medium">
+                {formatDate(contact.createdAt)}
               </td>
               <td className="py-4 px-4">
                 <div className="flex items-center gap-2">
                   <motion.div
-                    whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0] }}
+                    whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <Button
@@ -73,13 +61,13 @@ const ContactTable = ({ contacts, onEdit, onDelete, onCreateDeal }) => {
                       variant="ghost"
                       icon="Plus"
                       onClick={() => onCreateDeal && onCreateDeal(contact)}
-                      className="text-xs bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 text-white border-0 shadow-md font-bold"
+                      className="text-xs bg-green-100 hover:bg-green-200 text-green-700 border-0 shadow-sm"
                     >
-                      💼 Deal
+                      Deal
                     </Button>
                   </motion.div>
                   <motion.div
-                    whileHover={{ scale: 1.2, rotate: 10 }}
+                    whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
                     <Button
@@ -87,11 +75,11 @@ const ContactTable = ({ contacts, onEdit, onDelete, onCreateDeal }) => {
                       variant="ghost"
                       icon="Edit"
                       onClick={() => onEdit && onEdit(contact)}
-                      className="text-xs bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-white border-0 shadow-md"
+                      className="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 border-0"
                     />
                   </motion.div>
                   <motion.div
-                    whileHover={{ scale: 1.2, rotate: -10 }}
+                    whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
                     <Button
@@ -99,7 +87,7 @@ const ContactTable = ({ contacts, onEdit, onDelete, onCreateDeal }) => {
                       variant="ghost"
                       icon="Trash2"
                       onClick={() => onDelete && onDelete(contact)}
-                      className="text-xs bg-gradient-to-r from-red-400 to-pink-500 hover:from-red-500 hover:to-pink-600 text-white border-0 shadow-md"
+                      className="text-xs bg-red-100 hover:bg-red-200 text-red-600 border-0"
                     />
                   </motion.div>
                 </div>

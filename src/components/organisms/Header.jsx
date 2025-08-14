@@ -28,10 +28,10 @@ const navigation = [
           {/* Logo */}
           <div className="flex items-center space-x-8">
 <Link to="/" className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
+<div className="w-8 h-8 bg-slate-700 rounded-lg flex items-center justify-center">
                 <ApperIcon name="Zap" className="w-5 h-5 text-white" />
               </div>
-              <h1 className="text-xl font-display font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+              <h1 className="text-xl font-display font-bold text-slate-800">
                 SalesCRM Pro
               </h1>
             </Link>
@@ -44,18 +44,18 @@ const navigation = [
                   to={item.href}
                   className="relative group"
                 >
-                  <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+<div className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isActive(item.href)
-                      ? "text-primary-600 bg-gradient-to-r from-primary-50 to-secondary-50"
-                      : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"
+                      ? "text-slate-700 bg-slate-100"
+                      : "text-gray-600 hover:text-slate-700 hover:bg-slate-50"
                   }`}>
                     <ApperIcon name={item.icon} className="w-4 h-4" />
                     <span>{item.name}</span>
                   </div>
                   {isActive(item.href) && (
-                    <motion.div
+<motion.div
                       layoutId="navbar-indicator"
-                      className="absolute -bottom-4 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-600 to-secondary-600"
+                      className="absolute -bottom-4 left-0 right-0 h-0.5 bg-slate-600"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
@@ -85,7 +85,7 @@ const navigation = [
               <span className="sr-only">Notifications</span>
             </Button>
 
-            <div className="w-8 h-8 bg-gradient-to-r from-gray-300 to-gray-400 rounded-full flex items-center justify-center">
+<div className="w-8 h-8 bg-slate-400 rounded-full flex items-center justify-center">
               <ApperIcon name="User" className="w-4 h-4 text-white" />
             </div>
           </div>
