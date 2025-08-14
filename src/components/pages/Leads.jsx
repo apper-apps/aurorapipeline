@@ -388,16 +388,16 @@ const Leads = () => {
                 </table>
               </div>
             ) : (
-              <Empty
+<Empty
                 icon="UserPlus"
                 title="🎯 No leads found"
-description={searchTerm ? "🔍 No leads match your search criteria." : "🚀 Start capturing leads to grow your business."}
+                description={searchTerm ? "🔍 No leads match your search criteria." : "🚀 Start capturing leads to grow your business."}
                 actionText="✨ Add Lead"
-/>
+              />
             )}
-          </Card>
-        </motion.div>
-      </div>
+)}
+        </Card>
+      </motion.div>
     </div>
   );
 };

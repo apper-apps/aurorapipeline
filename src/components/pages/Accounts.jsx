@@ -383,16 +383,16 @@ const Accounts = () => {
                 </table>
               </div>
             ) : (
-              <Empty
+<Empty
                 icon="Building2"
                 title="🏢 No accounts found"
                 description={searchTerm ? "🔍 No accounts match your search criteria." : "🚀 Add your first account to start managing business relationships."}
-actionText="✨ Add Account"
+                actionText="✨ Add Account"
               />
             )}
-          </Card>
-        </motion.div>
+        </Card>
       </motion.div>
+
     </div>
   );
 };
