@@ -1,0 +1,30 @@
+[
+  {
+    "Id": 1,
+    "id": "cold-lead",
+    "name": "Cold Lead",
+    "order": 1,
+    "color": "border-l-blue-400"
+  },
+  {
+    "Id": 2,
+    "id": "hot-lead",
+    "name": "Hot Lead",
+    "order": 2,
+    "color": "border-l-orange-400"
+  },
+  {
+    "Id": 3,
+    "id": "estimate-sent",
+    "name": "Estimate Sent",
+    "order": 3,
+    "color": "border-l-purple-400"
+  },
+  {
+    "Id": 4,
+    "id": "deal-closed",
+    "name": "Deal Closed",
+    "order": 4,
+    "color": "border-l-green-400"
+  }
+]

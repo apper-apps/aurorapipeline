@@ -1,0 +1,92 @@
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import SearchBar from "@/components/molecules/SearchBar";
+import Button from "@/components/atoms/Button";
+import ApperIcon from "@/components/ApperIcon";
+
+const Header = () => {
+  const location = useLocation();
+  const [searchValue, setSearchValue] = useState("");
+
+  const navigation = [
+    { name: "Pipeline", href: "/pipeline", icon: "BarChart3" },
+    { name: "Contacts", href: "/contacts", icon: "Users" },
+    { name: "Analytics", href: "/analytics", icon: "TrendingUp" },
+    { name: "Settings", href: "/settings", icon: "Settings" },
+  ];
+
+  const isActive = (href) => location.pathname === href;
+
+  return (
+    <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+      <div className="px-6 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center space-x-8">
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
+                <ApperIcon name="BarChart3" className="w-5 h-5 text-white" />
+              </div>
+              <h1 className="text-xl font-display font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+                Pipeline Pro
+              </h1>
+            </Link>
+
+            {/* Navigation */}
+            <nav className="hidden md:flex space-x-8">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="relative group"
+                >
+                  <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    isActive(item.href)
+                      ? "text-primary-600 bg-gradient-to-r from-primary-50 to-secondary-50"
+                      : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"
+                  }`}>
+                    <ApperIcon name={item.icon} className="w-4 h-4" />
+                    <span>{item.name}</span>
+                  </div>
+                  {isActive(item.href) && (
+                    <motion.div
+                      layoutId="navbar-indicator"
+                      className="absolute -bottom-4 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-600 to-secondary-600"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Right Side */}
+          <div className="flex items-center space-x-4">
+            <div className="hidden md:block w-80">
+              <SearchBar
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder="Search deals, contacts..."
+              />
+            </div>
+
+            <Button variant="primary" icon="Plus" className="hidden md:flex">
+              New Deal
+            </Button>
+
+            <Button variant="ghost" icon="Bell">
+              <span className="sr-only">Notifications</span>
+            </Button>
+
+            <div className="w-8 h-8 bg-gradient-to-r from-gray-300 to-gray-400 rounded-full flex items-center justify-center">
+              <ApperIcon name="User" className="w-4 h-4 text-white" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
