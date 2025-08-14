@@ -4,7 +4,7 @@ import Card from "@/components/atoms/Card";
 import Badge from "@/components/atoms/Badge";
 import Button from "@/components/atoms/Button";
 import ApperIcon from "@/components/ApperIcon";
-import { formatCurrency, formatDistanceToNow } from "@/utils/formatters";
+import { formatCurrency, formatRelativeTime } from "@/utils/formatters";
 
 const DealCard = ({ 
   deal, 
@@ -76,8 +76,8 @@ const DealCard = ({
           </div>
           
           <div className="flex items-center justify-between text-xs text-gray-500">
-            <span>{getDaysInStage()} days in stage</span>
-            <span>{formatDistanceToNow(deal.lastActivity)} ago</span>
+<span>{getDaysInStage()} days in stage</span>
+            <span>{formatRelativeTime(deal.lastActivity)} ago</span>
           </div>
         </div>
 
