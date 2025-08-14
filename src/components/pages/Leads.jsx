@@ -391,15 +391,15 @@ const Leads = () => {
               <Empty
                 icon="UserPlus"
                 title="🎯 No leads found"
-                description={searchTerm ? "🔍 No leads match your search criteria." : "🚀 Start capturing leads to grow your business."}
+description={searchTerm ? "🔍 No leads match your search criteria." : "🚀 Start capturing leads to grow your business."}
                 actionText="✨ Add Lead"
-actionText="✨ Add Lead"
-              />
+/>
             )}
           </Card>
         </motion.div>
-      </motion.div>
+      </div>
     </div>
+  );
 };
 
 export default Leads;
