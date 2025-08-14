@@ -194,13 +194,11 @@ const Leads = () => {
               ✨ Add Lead
             </Button>
           </motion.div>
-        </div>
-      </motion.div>
 </div>
       </motion.div>
 
       {/* Search and Filters */}
-<motion.div
+      <motion.div
         whileHover={{ scale: 1.01 }}
         className="relative"
       >
