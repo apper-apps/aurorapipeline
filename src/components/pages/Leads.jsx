@@ -208,7 +208,7 @@ const Leads = () => {
     setImportFile(null);
   };
 
-  const handleFileChange = (e) => {
+const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file && file.type === 'text/csv') {
       setImportFile(file);
@@ -216,7 +216,7 @@ const Leads = () => {
       toast.error("Please select a valid CSV file");
       setImportFile(null);
     }
-};
+  };
 
   const handleConvertToContact = async (lead) => {
     try {
@@ -236,8 +236,9 @@ const Leads = () => {
     } catch (err) {
       toast.error("Failed to update lead status");
     }
-  };
-const handleDelete = async (lead) => {
+};
+
+  const handleDelete = async (lead) => {
     if (!window.confirm(`Are you sure you want to delete ${lead.Name}?`)) return;
 
     try {
@@ -264,7 +265,6 @@ const handleDelete = async (lead) => {
     if (score >= 60) return 'warning';
     return 'error';
   };
-
 const filteredLeads = leads.filter(lead => {
     const matchesSearch = lead.Name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          lead.email_c?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -567,8 +567,8 @@ icon="Edit"
                   ))}
                   </tbody>
 </table>
-              </div>
-) : (
+</div>
+            ) : (
               <Empty
                 icon="UserPlus"
                 title="🎯 No leads found"
@@ -577,7 +577,6 @@ icon="Edit"
                 onAction={openAddModal}
               />
             )}
-)}
         </Card>
       </motion.div>
 
