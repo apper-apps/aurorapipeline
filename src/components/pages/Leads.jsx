@@ -3,15 +3,15 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { LeadsService } from "@/services/api/leadsService";
 import ApperIcon from "@/components/ApperIcon";
-import FilterBar from "@/components/molecules/FilterBar";
-import SearchBar from "@/components/molecules/SearchBar";
-import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
-import Select from "@/components/atoms/Select";
+import Loading from "@/components/ui/Loading";
+import SearchBar from "@/components/molecules/SearchBar";
+import FilterBar from "@/components/molecules/FilterBar";
 import Button from "@/components/atoms/Button";
 import Badge from "@/components/atoms/Badge";
 import Card from "@/components/atoms/Card";
+import Select from "@/components/atoms/Select";
 import { formatCurrency, formatDate } from "@/utils/formatters";
 
 const Leads = () => {
@@ -217,7 +217,8 @@ const Leads = () => {
       setImportFile(null);
     }
 };
-const handleConvertToContact = async (lead) => {
+
+  const handleConvertToContact = async (lead) => {
     try {
       await LeadsService.convertToContact(lead.Id);
       setLeads(prev => prev.filter(l => l.Id !== lead.Id));
@@ -576,9 +577,9 @@ actionText="✨ Add Lead"
                 onAction={openAddModal}
               />
             )}
-          </Card>
-        </motion.div>
-      </div>
+)}
+        </Card>
+      </motion.div>
 
       {/* Add Lead Modal */}
       {showAddModal && (
