@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { useSearchParams } from "react-router-dom";
 import { LeadsService } from "@/services/api/leadsService";
 import ApperIcon from "@/components/ApperIcon";
 import Error from "@/components/ui/Error";
@@ -15,6 +16,7 @@ import Select from "@/components/atoms/Select";
 import { formatCurrency, formatDate } from "@/utils/formatters";
 
 const Leads = () => {
+const [searchParams, setSearchParams] = useSearchParams();
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -26,7 +28,6 @@ const Leads = () => {
   const [importFile, setImportFile] = useState(null);
   const [importing, setImporting] = useState(false);
   const [creating, setCreating] = useState(false);
-
   // Load leads data
   const loadLeads = async () => {
     try {
@@ -42,9 +43,17 @@ const Leads = () => {
   };
 
   useEffect(() => {
-    loadLeads();
+loadLeads();
   }, []);
 
+  // Check URL params to auto-open add modal
+  useEffect(() => {
+    if (searchParams.get('add') === 'true') {
+      setShowAddModal(true);
+      // Remove the parameter from URL without affecting history
+      setSearchParams({});
+    }
+  }, [searchParams, setSearchParams]);
   // Handle export functionality
   const handleExport = async () => {
     try {
@@ -199,7 +208,7 @@ const Leads = () => {
     }
   };
 
-  // Helper functions
+// Helper functions
   const openAddModal = () => setShowAddModal(true);
   const closeAddModal = () => setShowAddModal(false);
   const openImportModal = () => setShowImportModal(true);
