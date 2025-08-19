@@ -43,8 +43,24 @@ const handleDealMove = async (dealId, newStage) => {
       const deal = deals.find(d => d.Id === parseInt(dealId));
       if (!deal || deal.stage_c === newStage) return;
 
-      const updatedDeal = { ...deal, stage_c: newStage, updated_at_c: new Date().toISOString() };
-      await DealsService.update(deal.Id, { stage_c: newStage });
+      // Find the target stage to check if it's a closed stage
+      const targetStage = stages.find(s => s.id === newStage);
+      const isClosedStage = targetStage?.is_closed_c === true;
+
+      // Prepare update data with stage change
+      const updateData = { 
+        stage_c: newStage,
+        updated_at_c: new Date().toISOString()
+      };
+
+      // If moving to a closed stage, update activity tracking
+      if (isClosedStage) {
+        updateData.last_activity_c = new Date().toISOString();
+        updateData.last_activity_type_c = "Deal Closed";
+      }
+
+      const updatedDeal = { ...deal, ...updateData };
+      await DealsService.update(deal.Id, updateData);
       
       setDeals(prevDeals => 
         prevDeals.map(d => 
@@ -52,7 +68,12 @@ const handleDealMove = async (dealId, newStage) => {
         )
       );
 
-      toast.success(`Deal moved to ${stages.find(s => s.id === newStage)?.name || newStage}`);
+      // Provide specific feedback for closed deals
+      if (isClosedStage) {
+        toast.success("Deal closed successfully!");
+      } else {
+        toast.success(`Deal moved to ${targetStage?.name || newStage}`);
+      }
     } catch (err) {
       toast.error("Failed to move deal");
     }
