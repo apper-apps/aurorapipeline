@@ -31,11 +31,11 @@ const StageColumn = ({
 return deals.reduce((sum, deal) => sum + deal.value_c, 0);
   };
 
-  const getStageIcon = (stageName) => {
+const getStageIcon = (stageName) => {
     switch (stageName.toLowerCase()) {
-      case "cold lead": return "Snowflake";
-      case "hot lead": return "Flame";
-      case "estimate sent": return "FileText";
+      case "prospecting": return "Users";
+      case "qualification": return "Search";
+      case "estimate given": return "FileText";
       case "deal closed": return "CheckCircle";
       default: return "Circle";
     }

@@ -63,8 +63,8 @@ const handleDealMove = async (dealId, newStage) => {
     setActiveDropZone(stageId);
   };
 
-  const getDealsForStage = (stageId) => {
-    return deals.filter(deal => deal.stage === stageId);
+const getDealsForStage = (stageId) => {
+    return deals.filter(deal => deal.stage_c === stageId);
   };
 
   if (loading) return <Loading variant="pipeline" />;
