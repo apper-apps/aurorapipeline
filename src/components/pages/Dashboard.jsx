@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { DashboardService } from "@/services/api/dashboardService";
@@ -15,6 +15,7 @@ import Pipeline from "@/components/pages/Pipeline";
 import { formatCurrency, formatDate } from "@/utils/formatters";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [dashboard, setDashboard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -95,9 +96,10 @@ const Dashboard = () => {
               boxShadow: { duration: 2, repeat: Infinity }
             }}
           >
-            <Button 
+<Button 
               variant="primary" 
               icon="Plus"
+              onClick={() => navigate("/leads?add=true")}
               className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white border-0 shadow-lg hover:shadow-pink-400/50 font-bold"
             >
               🎯 New Lead
@@ -236,11 +238,11 @@ const Dashboard = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Button
+<Button
                     variant="ghost"
                     icon="UserPlus"
                     className="w-full justify-start bg-slate-100 text-slate-700 hover:bg-slate-200 border-0 shadow-sm text-left"
-                    onClick={() => handleQuickAction("Add New Lead")}
+                    onClick={() => navigate("/leads?add=true")}
                   >
                     Add New Lead
                   </Button>
