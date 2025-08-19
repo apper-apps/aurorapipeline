@@ -9,7 +9,7 @@ const apperClient = new ApperClient({
 const tableName = 'deal_c';
 
 export const DealsService = {
-  async getAll() {
+async getAll() {
     try {
       const params = {
         fields: [
@@ -18,7 +18,6 @@ export const DealsService = {
           { field: { Name: "value_c" } },
           { field: { Name: "stage_c" } },
           { field: { Name: "priority_c" } },
-          { field: { Name: "contact_id_c" } },
           { field: { Name: "contact_name_c" } },
           { field: { Name: "company_c" } },
           { field: { Name: "assigned_to_c" } },
@@ -53,7 +52,7 @@ export const DealsService = {
     }
   },
 
-  async getById(id) {
+async getById(id) {
     try {
       const params = {
         fields: [
@@ -62,7 +61,6 @@ export const DealsService = {
           { field: { Name: "value_c" } },
           { field: { Name: "stage_c" } },
           { field: { Name: "priority_c" } },
-          { field: { Name: "contact_id_c" } },
           { field: { Name: "contact_name_c" } },
           { field: { Name: "company_c" } },
           { field: { Name: "assigned_to_c" } },
@@ -231,8 +229,7 @@ export const DealsService = {
       return false;
     }
   },
-
-  async getByStage(stage) {
+async getByStage(stage) {
     try {
       const params = {
         fields: [
@@ -241,7 +238,6 @@ export const DealsService = {
           { field: { Name: "value_c" } },
           { field: { Name: "stage_c" } },
           { field: { Name: "priority_c" } },
-          { field: { Name: "contact_id_c" } },
           { field: { Name: "contact_name_c" } },
           { field: { Name: "company_c" } },
           { field: { Name: "assigned_to_c" } },
