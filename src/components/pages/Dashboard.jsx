@@ -78,10 +78,9 @@ const Dashboard = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Button 
-              variant="ghost" 
+variant="ghost" 
               icon="RefreshCw" 
               onClick={loadDashboard}
-              className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-500 hover:to-blue-600 border-0 shadow-lg hover:shadow-cyan-400/50 transition-all duration-300"
             >
               ⚡ Refresh
             </Button>
@@ -97,10 +96,9 @@ const Dashboard = () => {
             }}
           >
 <Button 
-              variant="primary" 
+variant="primary" 
               icon="Plus"
               onClick={() => navigate("/leads?add=true")}
-              className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white border-0 shadow-lg hover:shadow-pink-400/50 font-bold"
             >
               🎯 New Lead
             </Button>
