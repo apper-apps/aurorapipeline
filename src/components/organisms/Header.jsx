@@ -16,7 +16,7 @@ const navigation = [
     { name: "Leads", href: "/leads", icon: "UserPlus" },
     { name: "Contacts", href: "/contacts", icon: "Users" },
     { name: "Accounts", href: "/accounts", icon: "Building2" },
-    { name: "Pipeline", href: "/pipeline", icon: "BarChart3" },
+    { name: "Sales Pipeline", href: "/pipeline", icon: "BarChart3" },
     { name: "Analytics", href: "/analytics", icon: "TrendingUp" },
     { name: "Settings", href: "/settings", icon: "Settings" },
   ];
