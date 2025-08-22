@@ -33,10 +33,10 @@ return deals.reduce((sum, deal) => sum + deal.value_c, 0);
 
 const getStageIcon = (stageName) => {
     switch (stageName.toLowerCase()) {
-      case "prospecting": return "Users";
-      case "qualification": return "Search";
-      case "estimate given": return "FileText";
-      case "deal closed": return "CheckCircle";
+      case "cold lead": return "Users";
+      case "hot lead": return "Target";
+      case "estimate sent": return "FileText";
+      case "closed": return "CheckCircle";
       default: return "Circle";
     }
   };
