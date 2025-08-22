@@ -10,12 +10,13 @@ const tableName = 'stage_c';
 
 export const StagesService = {
   async getAll() {
-    try {
+try {
       const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "order_c" } },
-          { field: { Name: "color_c" } }
+          { field: { Name: "color_c" } },
+          { field: { Name: "is_closed_c" } }
         ],
         orderBy: [
           {
@@ -44,12 +45,13 @@ export const StagesService = {
   },
 
   async getById(id) {
-    try {
+try {
       const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "order_c" } },
-          { field: { Name: "color_c" } }
+          { field: { Name: "color_c" } },
+          { field: { Name: "is_closed_c" } }
         ]
       };
 
@@ -75,10 +77,11 @@ export const StagesService = {
     try {
       const params = {
         records: [
-          {
+{
             Name: stageData.Name,
             order_c: parseInt(stageData.order_c),
-            color_c: stageData.color_c
+            color_c: stageData.color_c,
+            is_closed_c: stageData.is_closed_c
           }
         ]
       };
@@ -120,8 +123,9 @@ export const StagesService = {
 
       // Only include updateable fields
       if (stageData.Name !== undefined) updateData.Name = stageData.Name;
-      if (stageData.order_c !== undefined) updateData.order_c = parseInt(stageData.order_c);
+if (stageData.order_c !== undefined) updateData.order_c = parseInt(stageData.order_c);
       if (stageData.color_c !== undefined) updateData.color_c = stageData.color_c;
+      if (stageData.is_closed_c !== undefined) updateData.is_closed_c = stageData.is_closed_c;
 
       const params = {
         records: [updateData]

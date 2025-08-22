@@ -31,7 +31,7 @@ const Pipeline = () => {
 
 const totalPipelineValue = deals.reduce((sum, deal) => sum + deal.value_c, 0);
   const avgDealSize = deals.length > 0 ? Math.round(totalPipelineValue / deals.length) : 0;
-  const closedDeals = deals.filter(deal => deal.stage_c === "deal-closed").length;
+  const closedDeals = deals.filter(deal => deal.stage_c === "deal-closed" || deal.stage_c === "Closed!").length;
   const conversionRate = deals.length > 0 ? Math.round((closedDeals / deals.length) * 100) : 0;
 
   return (
